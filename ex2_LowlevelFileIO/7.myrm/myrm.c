@@ -2,13 +2,20 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include <fcntl.h>
 
 int main(char argc, char *argv[]) {
-	int cnt;
+	int cnt, fd;
 
 	if(argc != 2) {
 		perror("Wrong Used");
 		printf("Format is 'myrm filename'\n");
+		exit(1);
+	}
+
+	fd = open(argv[1], O_RDONLY);
+	if(fd == -1) {
+		perror(argv[1]);
 		exit(1);
 	}
 

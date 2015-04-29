@@ -16,6 +16,10 @@ int main(char argc, char *argv[]) {
 
 	src = open(argv[1], O_RDONLY);
 	dst = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	if(src == -1) {
+		perror(argv[1]);
+		exit(1);
+	}
 
 	while(read(src, &ch, 1))
 		write(dst, &ch, 1);

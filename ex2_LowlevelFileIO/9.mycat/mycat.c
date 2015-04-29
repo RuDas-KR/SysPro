@@ -14,6 +14,10 @@ int main(char argc, char *argv[]) {
 	}
 
 	fd = open(argv[1], O_RDONLY);
+	if(fd == -1) {
+		perror(argv[1]);
+		exit(1);
+	}
 	
 	while(read(fd, &ch, 1))
 		write(1, &ch, 1);
