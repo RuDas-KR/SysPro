@@ -5,10 +5,6 @@
 #include <stdio.h>
 #include <string.h>
 
-void name() {
-		printf("syspro@shell : ");
-}	//	Shell Name Print
-
 int main() {
 		int status;
 		pid_t pid;
@@ -17,7 +13,8 @@ int main() {
 		int i;
 
 		while(1) {
-				name();
+				printf("\nEnter the Child Process Name\n");
+				printf("Exit Code : exit or quit :");
 				gets(run);
 				if((strcmp(run, "exit") == 0) || (strcmp(run, "quit") == 0)) {
 						printf("Process Exit\n");
@@ -32,9 +29,9 @@ int main() {
 					break;
 					
 				case 0 :
-					printf("--> Child Process\n");
+					printf("--> Child Process name : %s\n", &run);
 					while(1) {
-						name();
+						printf("Syspro@%s : ", &run);
 						gets(child);
 						if((strcmp(child, "exit") == 0) || (strcmp(child, "quit") == 0)) {
 							break;
@@ -43,7 +40,7 @@ int main() {
 						i = system(child);
 					}
 					
-					printf("Child Exit\n");
+					printf("%s Exit\n", &run);
 					exit(2);
 					break;
 					
@@ -51,6 +48,7 @@ int main() {
 					while(wait(&status) != pid)
 						continue;
 					break;
+					// Child 프로세스가 종료될 때 까지 대기
 				}
 		}
 		
